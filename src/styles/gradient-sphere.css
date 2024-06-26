@@ -1,0 +1,14 @@
+.gradient-sphere {
+  position: fixed;
+  width: 1000px;
+  height: 1000px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    1500px at 50% 50%,
+    rgba(29, 78, 216, 0.15),
+    transparent 20%
+  );
+  z-index: -1;
+}

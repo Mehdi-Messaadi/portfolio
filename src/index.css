@@ -1,13 +1,738 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:wght@100,300,400,500,600,700,800,900&display=swap");
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: rgb(22, 28, 45);
+    letter-spacing: 1px;
+    @apply dark:text-white transition-all duration-[0.5s] ease-[ease];
+  }
+
+  p {
+    color: rgb(148 163 184 / 1);
+    letter-spacing: 1px;
+  }
+
+  a {
+    letter-spacing: 1px;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  scroll-behavior: smooth;
+
+  scroll-padding-top: 50px;
+
+  @media (min-width: 992px) {
+    scroll-padding-top: 80px;
+  }
+}
+
+.Homepage {
+  @apply dark:bg-secondaryDarkColor transition-all duration-[0.5s] ease-[ease];
+}
+
+.Navbar-Wrapper {
+  @apply fixed w-full z-[999] transition-[background-color] duration-[0.5s] ease-[ease] bg-white dark:bg-primaryDarkColor dark:md992:bg-[initial] md992:bg-[initial] shadow-[0_0_10px_rgba(60,72,88,0.15)]  md992:shadow-[initial] dark:shadow-[0_0_10px_rgba(255,255,255,0.15)] dark:md992:shadow-[initial];
+}
+
+.Navbar-Wrapper.Scrolled {
+  @apply bg-white shadow-[0_0_10px_rgba(60,72,88,0.15)] dark:bg-primaryDarkColor dark:shadow-[0_0_10px_rgba(255,255,255,0.15)];
+}
+
+.Navbar-Container {
+  @apply mx-auto px-[20px] w-full sm540:max-w-540 sm:max-w-640 md:max-w-768 md992:max-w-992 lg:max-w-1024 xl:max-w-1280;
+}
+
+.Navbar {
+  @apply flex py-5 justify-between lg:gap-20 items-center h-[50px] md992:h-[initial];
+}
+
+.Navbar-List {
+  @apply flex gap-x-6 items-center flex-col fixed md992:relative bg-white dark:bg-primaryDarkColor dark:md992:bg-[initial] w-[100%] sm:w-[50%] right-0 top-0 h-full z-[999] md992:flex-row md992:bg-[initial] md992:w-[initial] md992:right-[initial] md992:top-[initial] md992:h-[initial] md992:z-[initial] opacity-0 md992:opacity-100 translate-x-full md992:translate-x-0 transition-all duration-[0.3s] ease-[ease];
+}
+
+.Navbar-List.Mobile {
+  @apply opacity-100 translate-x-0;
+}
+
+.Navbar-Item {
+  @apply text-xl cursor-pointer text-nowrap hover:text-primaryColor transition-all duration-[0.3s] ease-[ease] py-[10px] md992:py-[initial] w-full md992:w-[initial] dark:text-white dark:hover:text-primaryColor;
+}
+
+.Navbar-Item.Colored {
+  @apply bg-secondaryColor dark:bg-paragraphColor;
+}
+
+.Navbar-Item-Mobile-Close {
+  @apply py-[5px] self-end px-[20px];
+}
+
+.Navbar-Item-Mobile-Close-Icon > path,
+.Navbar-MobileMenu-Icon > path {
+  @apply dark:fill-white transition-all duration-[0.5s] ease-[ease];
+}
+
+.Navbar-Item-Mobile-Close-Icon {
+  @apply w-[40px] h-[40px] mr-[-7px] cursor-pointer;
+}
+
+.Navbar-MobileMenu-Icon-Container.Inactive {
+  @apply translate-x-[100%];
+}
+
+.Navbar-MobileMenu-Icon-Container {
+  @apply translate-x-0 transition-all duration-[0.3s] ease-[ease];
+}
+
+.Navbar-MobileMenu-Icon {
+  @apply w-[40px] h-[40px] mr-[-5px] cursor-pointer;
+}
+
+.Navbar-Mobile-Overlay {
+  @apply fixed w-full h-full right-[50%] bg-paragraphColor z-[998] top-0 cursor-pointer opacity-0 translate-x-[-100%] transition-all duration-[0.3s] ease-[ease];
+}
+
+.Navbar-Mobile-Overlay.Active {
+  @apply opacity-[0.7] translate-x-0;
+}
+
+.Navbar-Link {
+  @apply text-[16px] font-[500] w-full block hover:brightness-[1.2];
+}
+
+.Navbar-Title {
+  @apply text-[20px] md992:text-[26px] font-bold text-nowrap;
+}
+
+.Navbar-Socials-Item-Button {
+  @apply items-center justify-center inline-flex text-center p-[8px] rounded-[50%] bg-quaternaryColor dark:bg-primaryDarkColor dark:border-paragraphColor border
+   border-[rgba(229,231,235,1)] hover:bg-[rgba(229,231,235,1)] hover:border-quaternaryColor dark:hover:bg-paragraphColor dark:hover:border-paragraphColor transition-all
+   duration-[0.5s] ease-[ease];
+}
+
+.Navbar-Socials-Item-Icon > path,
+.Navbar-Socials-Item-Icon g {
+  @apply dark:fill-white transition-all duration-[0.5s] ease-[ease];
+}
+
+.Navbar-Socials-Item-Button.Scrolled,
+.Navbar-Socials-Item-Button.Mobile {
+  @apply bg-primaryColor border-primaryColor hover:bg-secondaryColor hover:border-secondaryColor;
+}
+
+.Navbar-Socials-Item-Button.Scrolled:hover g,
+.Navbar-Socials-Item-Button.Mobile:hover g,
+.Navbar-Socials-Item-Button.Scrolled:hover .Navbar-Socials-Item-Icon > path,
+.Navbar-Socials-Item-Button.Mobile:hover .Navbar-Socials-Item-Icon > path {
+  @apply fill-primaryColor;
+}
+.Navbar-Socials-Item-Icon > path {
+  @apply transition-all duration-[0.5s] ease-[ease];
+}
+
+.Navbar-ListAndSocials-Wrapper {
+  @apply flex md992:flex justify-end w-full gap-[30px] xl:gap-[60px];
+}
+
+.Navbar-Socials-Items,
+.Footer-Socials-Items {
+  @apply flex gap-[6px];
+}
+
+.Navbar-Socials-Item.NavbarList {
+  @apply flex gap-[20px];
+}
+
+.Navbar-Socials-Item-Icon g {
+  @apply fill-textColor transition-all duration-[0.5s] ease-[ease];
+}
+
+.Navbar-Socials-Item-Icon.Scrolled g,
+.Navbar-Socials-Item-Icon.Mobile g,
+.Navbar-Socials-Item-Icon.Mobile > path,
+.Navbar-Socials-Item-Icon.Scrolled > path {
+  @apply fill-white;
+}
+
+/* .Navbar-Socials-Item-Icon.Git.Scrolled > path {
+  @apply transition-all duration-[0.5s] ease-[ease];
+} */
+
+.Navbar-Socials-Item-Icon {
+  @apply w-[16px] h-[16px];
+}
+
+/* .Navbar-Socials-Item-Icon.Git {
+  @apply w-[25px] h-[25px];
+} */
+
+.Navbar-SocialsTitle {
+  @apply mt-[80px] font-[500] mb-[10px];
+}
+
+.Copied-Message,
+.Footer-Copied-Message {
+  @apply absolute text-nowrap text-[14px];
+}
+
+.Copied-Message {
+  @apply text-[primaryDarkColor] dark:text-white mt-[40px] md992:mt-[initial];
+}
+
+.Footer-Copied-Message {
+  @apply mt-[1px] text-white;
+}
+
+@media (min-width: 768px) {
+  .HomeSection {
+    @apply before:h-[168%] before:w-[150%] after:h-[12%] after:w-[210%] after:start-[-50%];
+  }
+}
+
+@media (min-width: 992px) {
+  .HomeSection {
+    @apply before:h-[50%] before:w-full before:start-[34%] after:h-[24%] after:w-[178%] after:start-[-42%];
+  }
+}
+
+@media (min-width: 1200px) {
+  .HomeSection {
+    @apply after:start-[-36%];
+  }
+}
+
+@media (min-width: 1280px) {
+  .HomeSection {
+    @apply after:start-[-40%];
+  }
+}
+
+.HomeSection {
+  @apply bg-[rgba(245,158,11,0.05)] transition-all
+   duration-[0.5s] ease-[ease] pt-[4rem] md:pt-[6rem] lg:pt-[10rem] overflow-hidden relative before:bg-primaryColor before:absolute  before:transform before:rotate-[115deg] before:skew-x-[0] before:skew-y-[0] after:bg-secondaryColor after:absolute after:transform after:rotate-[115deg] after:skew-x-[0] after:skew-y-[0] after:z-[-1] after:dark:z-[0];
+}
+
+.HomeSection-Image {
+  @apply dark:relative dark:z-[2];
+}
+
+.HomeSection-Content {
+  @apply flex flex-col md:flex-row justify-between relative;
+}
+
+@media (min-width: 400px) {
+  .HomeSection-Text-Title-Normal {
+    @apply text-nowrap;
+  }
+}
+
+@media (min-width: 768px) {
+  .HomeSection-Text-Title {
+    @apply text-left text-[28px] font-[800] mb-[20px];
+  }
+
+  .HomeSection-Text-Title-Divider {
+    @apply text-[24px];
+  }
+}
+
+.HomeSection-Text-Title {
+  @apply text-left text-[22px] font-[800] mb-[20px];
+}
+
+@media (min-width: 992px) {
+  .HomeSection-Text-Title {
+    @apply text-left text-[34px] font-[800];
+  }
+
+  .HomeSection-Text-Title-Divider {
+    @apply text-[34px];
+  }
+}
+
+.HomeSection-Text-Description {
+  @apply mb-[30px] text-left;
+}
+
+.HomeSection-Text {
+  @apply w-[100%] md:w-[50%] h-full self-center pt-[50px] pb-[0px] md:pb-[50px];
+}
+
+.HomeSection-Image-Container {
+  @apply w-[100%] md:w-[50%] self-end;
+}
+
+.HomeSection-Text-Buttons {
+  @apply flex gap-[10px];
+}
+
+.HomeSection-Text-Button-Link .Button-Style-Two,
+.HomeSection-Text-Button-Link .Button-Style-One {
+  @apply px-[10px] sm:px-[15px];
+}
+
+.Button-Style-One {
+  @apply border border-primaryColor text-[white] font-medium rounded-[6px] px-[15px] py-[8px] bg-primaryColor hover:text-primaryColor hover:border-secondaryColor hover:bg-secondaryColor transition-all duration-[0.5s] ease-[ease];
+}
+
+.Button-Style-Two {
+  @apply border border-secondaryColor text-primaryColor font-medium rounded-[6px] px-[15px] py-[8px] bg-secondaryColor hover:text-white hover:border-primaryColor hover:bg-primaryColor transition-all duration-[0.5s] ease-[ease];
+}
+
+.HomeSection-Text-Title-Divider {
+  @apply flex gap-2.5;
+}
+
+.HomeSection-Text-Title-Colored {
+  @apply text-primaryColor;
+}
+
+.SkillsSection {
+  @apply mb-[40px] md:mb-[80px];
+}
+
+.SkillsSection-Skill-Icon {
+  @apply w-[20px] h-[20px] sm:w-[28px] sm:h-[28px] fill-primaryColor;
+}
+
+.SkillsSection-Skill-Icon {
+  @apply rotate-[45deg] self-center;
+}
+
+.SkillsSection-Skill-Icon > path {
+  @apply fill-primaryColor transition-all duration-[0.5s] ease-[ease];
+}
+
+.SkillsSection-Skills-Container {
+  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[10px] sm:gap-[20px];
+}
+
+.SkillsSection-SkillCard {
+  @apply flex gap-[10px] sm:gap-[20px] border border-[rgba(229,231,235,1)] dark:border-paragraphColor dark:hover:border-white dark:hover:shadow-[0_0_10px_rgba(255,255,255,0.15)] hover:border-paragraphColor rounded-[6px] items-center px-[10px] py-[5px] sm:px-[20px] sm:py-[10px] transition-all duration-[0.5s] ease-[ease] cursor-pointer;
+}
+
+.SkillsSection-SkillCard:hover .SkillsSection-Skill-Icon-Container {
+  @apply bg-primaryColor;
+}
+
+.SkillsSection-SkillCard:hover .SkillsSection-Skill-Icon > g,
+.SkillsSection-SkillCard:hover .SkillsSection-Skill-Icon > g > path,
+.SkillsSection-SkillCard:hover .SkillsSection-Skill-Icon > path {
+  @apply fill-white;
+}
+
+.SkillsSection-Skill-Icon-Container {
+  @apply w-[30px] h-[30px] sm:w-[45px] sm:h-[45px] flex justify-center rounded-[10px] bg-secondaryColor rotate-[-45deg] transition-all duration-[0.5s] ease-[ease];
+}
+
+.SkillsSection-Skill-Name {
+  @apply font-[500] text-[12px] sm:text-[16px] text-nowrap dark:text-white transition-all duration-[0.5s] ease-[ease];
+}
+
+.SkillsSection-Title,
+.ProjectsSection-Title,
+.ContactSection-Title {
+  @apply mt-[60px] md:mt-[80px] mb-[40px] text-[22px] font-[600];
+}
+
+.ProjectsSection-Title {
+  @apply pt-[40px];
+}
+
+.ExperienceSection-Title {
+  @apply text-[22px] font-[600] pt-[40px] mb-[40px];
+}
+
+.ProjectsSection,
+.ExperienceSection {
+  @apply bg-[rgba(249,250,251,1)] dark:bg-[rgb(30,41,59)] transition-all duration-[0.5s] ease-[ease];
+}
+
+.ProjectsSection-Projects-Container {
+  @apply relative pb-[20px];
+}
+
+.ProjectsSection-Project {
+  @apply relative flex flex-col justify-center rounded-[30px] py-[20px] bg-white shadow-[0_0_10px_rgba(60,72,88,0.15)] px-[10px] pb-[80px] dark:bg-secondaryDarkColor transition-all duration-[0.5s] ease-[ease];
+}
+
+.ProjectsSection-Project-Details {
+  @apply relative;
+}
+
+.ProjectsSection-Project-Title {
+  @apply text-[30px] sm:text-[34px] font-[800] mb-[10px] sm:mb-[20px];
+}
+
+.ProjectsSection-Project-Techstack {
+  @apply flex text-[24px] text-nowrap gap-[10px] items-center mb-[20px] justify-center flex-wrap md992:flex-nowrap;
+}
+
+.ProjectsSection-Project-Techstack-Title {
+  @apply text-[22px] sm:text-[26px] font-[700];
+}
+
+.ProjectsSection-Project-Techstack-List {
+  @apply flex gap-[10px] font-[600] items-center flex-wrap justify-center;
+}
+
+.ProjectsSection-Project-Techstack-Item {
+  @apply px-[5px] py-[5px] border border-primaryColor bg-primaryColor rounded-[6px] hover:bg-secondaryColor hover:border-secondaryColor transition-all duration-[0.5s] ease-[ease];
+}
+
+.ProjectsSection-Project-Techstack-Item:hover
+  .ProjectsSection-Project-Techstack-Item-Label {
+  @apply text-primaryColor transition-all duration-[0.5s] ease-[ease];
+}
+
+.ProjectsSection-Project-Techstack-Item-Label {
+  @apply text-white text-[14px] sm:text-[16px];
+}
+
+.ProjectsSection-Project-Description {
+  @apply px-0 md:px-[10%] lg:px-[20%];
+}
+
+.ProjectsSection-Project-Links {
+  @apply flex flex-col sm:flex-row gap-[10px] justify-center mt-[20px] items-center;
+}
+
+.ProjectsSection-Project-Link,
+.ProjectsSection-Project-Link.Button-Style-One,
+.ProjectsSection-Project-Link.Button-Style-Two {
+  @apply w-full sm:w-[initial];
+}
+
+.ProjectsSection-Project-Link.Button-Style-One,
+.ProjectsSection-Project-Link.Button-Style-Two {
+  @apply flex gap-[10px] items-center justify-center;
+}
+
+.ProjectsSection-Project-Link-Icon,
+.ContactSection-ContactInformation-Phone-Icon,
+.ContactSection-ContactInformation-Email-Icon,
+.ContactSection-ContactInformation-Location-Icon {
+  @apply h-[20px] w-[20px];
+}
+
+.ProjectsSection-Project-Link.Button-Style-One
+  .ProjectsSection-Project-Link-Icon.Live
+  > path,
+.ProjectsSection-Project-Link.Button-Style-Two:hover
+  .ProjectsSection-Project-Link-Icon.Github
+  > path {
+  @apply fill-white transition-all duration-[0.5s] ease-[ease];
+}
+
+.ProjectsSection-Project-Link.Button-Style-One:hover
+  .ProjectsSection-Project-Link-Icon.Live
+  > path,
+.ProjectsSection-Project-Link.Button-Style-Two
+  .ProjectsSection-Project-Link-Icon.Github
+  > path {
+  @apply fill-primaryColor;
+}
+
+.ComputerScreenShape {
+  @apply w-[100%] md992:w-[80%] h-auto self-center;
+}
+
+.ComputerScreenShape > path,
+.MobileScreenShape > path {
+  @apply fill-textColor dark:fill-white transition-all duration-[0.5s] ease-[ease];
+}
+
+.ComputerAndMobileWebsiteImage-Container {
+  @apply relative flex justify-center;
+}
+
+.Computer-Scrollable-Image-Container {
+  @apply h-full w-full overflow-hidden bg-gray-400 relative;
+}
+
+.Mobile-Scrollable-Image-Container {
+  @apply overflow-hidden bg-gray-400 relative h-[99%];
+}
+
+.ScrollablePCImage {
+  @apply w-full h-auto translate-x-[-2px] translate-y-[5px] opacity-0 transition-all lg:blur-[0.5px];
+  transition-property: opacity, transform;
+  transition-duration: 500ms, 10000ms;
+}
+
+.ScrollableMobileImage {
+  @apply opacity-0 transition-all lg:blur-[0.5px] w-full h-auto lg:brightness-[0.8];
+  transition-property: opacity, brightness, transform;
+  transition-duration: 500ms, 500ms, 10000ms;
+}
+
+.ScrollablePCImage.active {
+  @apply opacity-100 lg:opacity-70;
+}
+
+.ScrollableMobileImage.active {
+  @apply opacity-100 lg:opacity-50 brightness-[1];
+}
+
+.ComputerWebsiteImage:hover .ScrollablePCImage,
+.MobileWebsiteImage:hover .ScrollableMobileImage {
+  @apply translate-y-[-88%] opacity-100 blur-0;
+}
+
+.ScrollablePCImage-Hint {
+  @apply absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-[34px] font-[600] text-white dark:text-primaryDarkColor lg:z-[1] transition-all duration-[0.5s] ease-[ease];
+}
+
+.ScrollableMobileImage-Hint {
+  @apply absolute top-[60%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-[40px] font-[600] text-white dark:text-primaryDarkColor lg:z-[1] transition-all duration-[0.5s] ease-[ease] text-wrap break-all w-full px-[5px];
+}
+
+.ComputerWebsiteImage:hover .ScrollablePCImage-Hint,
+.MobileWebsiteImage:hover .ScrollableMobileImage-Hint {
+  @apply opacity-0;
+}
+
+.MobileScreenShape {
+  @apply absolute top-[50%] h-[50%] w-fit left-[65%] z-[2];
+}
+
+.MobileWebsiteImage {
+  @apply w-[97%] h-[100%] rounded-[50px] translate-x-[4px];
+}
+
+.ExperienceSection-Content-List {
+  @apply relative flex flex-col after:absolute after:right-0 after:left-[15px] after:md:left-0 after:w-[1px] after:h-full after:border-s-2 after:border-[rgba(229,231,235,1)] after:border-dashed after:mx-[initial] after:md:mx-auto;
+}
+
+.ExperienceSection-Content {
+  @apply relative flex flex-col justify-between mb-[40px] md:flex-row ml-[40px] md:ml-[initial];
+}
+
+.ExperienceSection-Content-Left {
+  @apply flex flex-col items-start md:items-end w-full md:w-[50%] text-left md:text-right relative px-0 md:px-[40px] mb-[20px] md:mb-[0px];
+}
+
+.ExperienceSection-Content-Right {
+  @apply flex flex-col items-start w-full md:w-[50%] text-left relative px-0 md:px-[40px] mb-[20px];
+}
+
+.ExperienceSection-Content-Container {
+  @apply relative after:right-0 after:absolute after:bg-primaryColor after:md:mx-[auto] after:rounded-full after:h-[10px] after:w-[10px] after:top-[10px] after:z-[2] after:mx-[initial] after:left-[10px] after:md:left-[0] before:absolute before:right-0 before:left-0 before:md:mx-auto before:bg-white before:dark:bg-primaryDarkColor before:border-2 before:border-[rgba(229,231,235,1)] before:border-dashed before:rounded-full before:h-[30px] before:w-[30px] before:top-0 before:z-[1] before:mx-[initial];
+}
+
+.ExperienceSection-Content-Title {
+  @apply text-[18px] font-[600] mb-[10px];
+}
+
+.ExperienceSection-Content-Logo-Container {
+  @apply w-[100px] h-auto mb-[20px] mt-[5px];
+}
+
+.ExperienceSection-Content-Description-List {
+  @apply list-disc;
+}
+
+.ContactForm-Container {
+  @apply rounded-[10px] shadow-[0_0_10px_rgba(60,72,88,0.15)] mb-[40px] md:w-full dark:bg-primaryDarkColor  dark:shadow-[0_0_10px_rgba(255,255,255,0.15)] transition-all duration-[0.5s] ease-[ease];
+}
+
+.ContactSection-ContactForm-Wrapper {
+  @apply md:w-[50%];
+}
+
+.ContactSection-ContactFormAndInformation {
+  @apply md:flex md:gap-[20px] md:justify-between md:mx-[20px];
+}
+
+.ContactForm-NameAndEmail-Input-Container {
+  @apply w-full flex flex-col lg:flex-row lg:gap-[20px];
+}
+
+.ContactSection {
+  @apply mb-[40px];
+}
+
+.ContactForm {
+  @apply p-[20px] flex flex-col items-start;
+}
+
+.ContactForm-Input-Container {
+  @apply mb-[20px] w-full;
+}
+.ContactForm-Input-Container .error {
+  @apply text-primaryColor;
+}
+
+.ContactForm-Input {
+  @apply border border-[rgba(60,72,88,0.15)] rounded-[5px] w-full px-[10px] py-[5px] dark:bg-primaryDarkColor dark:border-paragraphColor dark:text-white transition-all duration-[0.5s] ease-[ease];
+}
+
+.ContactForm-Input.Textarea {
+  @apply min-h-[150px];
+}
+
+.ContactForm-Input:focus {
+  @apply outline outline-[1px] border-transparent dark:border-primaryColor transition-all
+   duration-[0.5s] ease-[ease];
+}
+
+.ContactForm-Input::placeholder {
+  @apply text-paragraphColor font-[300];
+}
+
+.ContactSection-ContactInformation {
+  @apply lg:flex lg:flex-col lg:justify-center md:w-[50%];
+}
+
+.ContactSection-ContactInformation-Phone,
+.ContactSection-ContactInformation-Email,
+.ContactSection-ContactInformation-Location {
+  @apply flex flex-col text-[14px] md992:text-[16px];
+}
+
+.ContactSection-ContactInformation-Phone,
+.ContactSection-ContactInformation-Email {
+  @apply mb-[20px];
+}
+
+.ContactSection-ContactInformation-Phone-Information,
+.ContactSection-ContactInformation-Email-Information,
+.ContactSection-ContactInformation-Location-Information {
+  @apply flex gap-[20px] items-start ml-[20px];
+}
+
+.ContactSection-ContactInformation-Phone-Icon > path,
+.ContactSection-ContactInformation-Email-Icon > path,
+.ContactSection-ContactInformation-Location-Icon > path {
+  @apply dark:fill-white transition-all duration-[0.5s] ease-[ease];
+}
+
+.ContactSection-ContactInformation-Phone-Information-Value,
+.ContactSection-ContactInformation-Email-Information-Value,
+.ContactSection-ContactInformation-Location-Information-Value {
+  @apply relative text-left left-[60px];
+}
+
+.Footer {
+  @apply bg-primaryDarkColor py-[20px] transition-all duration-[0.5s] ease-[ease];
+}
+
+.Footer-Container {
+  @apply flex flex-col md992:flex-row items-center gap-[40px];
+}
+
+.Footer-Information-Text {
+  @apply text-white;
+}
+
+.Footer-Socials-Item-Button {
+  @apply items-center justify-center inline-flex text-center p-[8px] rounded-[20%] bg-primaryDarkColor border
+   border-white hover:bg-primaryColor hover:border-primaryColor transition-all
+   duration-[0.5s] ease-[ease];
+}
+
+.Footer-Socials-Item-Icon {
+  @apply h-[16px] w-[16px];
+}
+
+.Footer-Socials-Item-Icon g,
+.Footer-Socials-Item-Icon path {
+  @apply fill-white;
+}
+
+.Footer-Signature-Text {
+  @apply text-[26px] font-[600] text-nowrap text-white;
+}
+
+.Footer-Information-Text {
+  @apply text-[14px];
+}
+
+.Footer-Information-Text-Link {
+  @apply font-[600] text-paragraphColor hover:text-primaryColor transition-all
+   duration-[0.3s] ease-[ease];
+}
+
+.DarkMode-ToggleButton-Icon {
+  @apply h-[20px] w-[20px];
+}
+
+.DarkMode-ToggleButton-Icon > path {
+  @apply fill-primaryColor;
+}
+
+.DarkMode-ToggleButton-Container,
+.LanguageSwitcher-ToggleButton-Container {
+  @apply fixed bg-primaryDarkColor dark:bg-white rounded-[50px] px-[8px] flex gap-[10px] rotate-90 cursor-pointer shadow-[0_0_10px_rgba(60,72,88,0.15)] dark:shadow-[0_0_10px_rgba(255,255,255,0.15)] transition-all
+   duration-[0.5s] ease-[ease];
+}
+
+.DarkMode-ToggleButton-Container {
+  @apply top-[50%] translate-y-[-50%] right-[-16.5px] py-[6px];
+}
+
+.LanguageSwitcher-ToggleButton-Container {
+  @apply top-[35%] translate-y-[-35%] right-[-15px] text-white dark:text-primaryColor py-[4px] transition-all
+   duration-[0.5s] ease-[ease];
+}
+
+.LanguageSwitcher-ToggleButton {
+  @apply rotate-[-90deg] font-[500];
+}
+
+.DarkMode-ToggleButton-Circle,
+.LanguageSwitcher-ToggleButton-Circle {
+  @apply absolute bg-white h-[28px] w-[28px] rounded-full bottom-[2px] right-[2px] transition-all
+   duration-[0.5s] ease-[ease];
+}
+
+.DarkMode-ToggleButton-Circle.Dark {
+  @apply translate-x-[-34px] bg-primaryDarkColor transition-all duration-[0.5s] ease-[ease];
+}
+
+.LanguageSwitcher-ToggleButton-Circle {
+  @apply dark:bg-primaryDarkColor transition-all duration-[0.5s] ease-[ease];
+}
+
+.LanguageSwitcher-ToggleButton-Circle.FR {
+  @apply translate-x-[-32px] transition-all duration-[0.5s] ease-[ease];
+}
+
+@layer utilities {
+  .primary-color {
+    --tw-bg-opacity: 1;
+    background-color: rgb(245 158 11 / var(--tw-bg-opacity));
+  }
+
+  .secondary-color {
+    --tw-bg-opacity: 1;
+    background-color: rgba(245, 158, 11, 0.1);
+  }
+
+  .tertiary-color {
+    --tw-bg-opacity: 1;
+    background-color: rgba(245, 158, 11, 0.05);
+  }
+
+  .paragraph-color {
+    --tw-text-opacity: 1;
+    color: rgb(148 163 184 / 1) !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
