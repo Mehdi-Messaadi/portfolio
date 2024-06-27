@@ -32,6 +32,8 @@
   "email-alert": "Veuillez entrer un e-mail valide.",
   "location": "Emplacement",
   "send-message": "Envoyer Message",
+  "send-another-message": "Envoyer Un Autre Message",
+  "message-sent-successfully": "Message envoyé avec succès!",
   "email-address-copied": "Adresse e-mail copiée!",
   "algiers-algeria": "Alger, Algérie",
   "built-with": "Conçu avec",
